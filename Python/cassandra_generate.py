@@ -2,6 +2,13 @@
 
 from cassandra.cluster import Cluster
 import random
+import sys
+
+if len(sys.argv) < 2:
+    print "Gonna need a number of rows to insert chief"
+    exit(1)
+
+num = int(sys.argv[1])
 
 words = open('words.txt').read().splitlines()
 
@@ -20,6 +27,7 @@ def get_score(budget):
     else:
         score = random.randrange (60, 101)
     return score
+
 def get_params():
     title = make_title()
     budget = random.randrange(1, 101)
@@ -38,10 +46,13 @@ def make_title():
 
 def generate_data(session):
     params = get_params()
-    query = '''INSERT INTO game_by_name ( name, score, budget )
-            VALUES ( %s, %s, %s );'''
+    query = '''INSERT INTO games_by_year ( year, name, score, budget )
+            VALUES ( 2015, %s, %s, %s );'''
     session.execute(query, (params[0], params[1], params[2]))
 
 if __name__ == "__main__":
     session = setup()
-    generate_data(session)
+    a = 1
+    while a <= num:
+        generate_data(session)
+        a += 1
