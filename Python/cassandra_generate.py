@@ -13,17 +13,13 @@ def setup():
 def get_score(budget):
     if budget < 25:
         score = random.randrange(10, 101)
-        return score
     elif budget <= 50:
         score = random.randrange(25, 101)
-        return score
     elif budget <= 75:
         score = random.randrange (45, 101)
-        return score
     else:
         score = random.randrange (60, 101)
-        return score
-
+    return score
 def get_params():
     title = make_title()
     budget = random.randrange(1, 101)
