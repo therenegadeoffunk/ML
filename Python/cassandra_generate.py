@@ -18,24 +18,22 @@ def setup():
     return session
 
 def get_score(budget):
-    if budget < 25:
-        score = random.randrange(10, 101)
-    elif budget <= 50:
-        score = random.randrange(60, 101)
-    elif budget <= 75:
-        score = random.randrange (70, 101)
+    if budget < 5.0:
+        score = random.uniform(1, 7)
     else:
-        score = random.randrange (80, 101)
+        score = random.uniform(6, 11) + budget/5.0
+        if score > 10:
+            score = random.uniform(8, 11)
     return score
 
 def get_params():
     title = make_title()
-    budget = random.randrange(1, 101)
+    budget = random.uniform(1, 11)
     score = get_score(budget)
     return [ title, score, budget ]
 
 def make_title():
-    title_length = random.randrange(1, 7)
+    title_length = random.uniform(1, 7)
     terms = []
     i = 0
     while i <= title_length:
