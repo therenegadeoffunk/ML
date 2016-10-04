@@ -1,0 +1,6 @@
+             Table "public.tumors"
+  Column   |         Type          | Modifiers 
+-----------+-----------------------+-----------
+ id        | character varying(50) | 
+ size      | double precision      | 
+ malignant | integer 
