@@ -3,6 +3,17 @@
 require('RPostgreSQL')
 require('random')
 
+args <- commandArgs(trailingOnly=TRUE)
+
+if (length(args)==0) {
+    print('Gonna need at least one argument Jim laddy')
+    stop()
+} else {
+    num <- strtoi(args[1])
+}
+
+stringlist <- randomStrings(num, len=20)
+
 setup <- function()
 {
     drv <- dbDriver('PostgreSQL')
@@ -10,9 +21,9 @@ setup <- function()
     return(con)
 }
 
-make_parameters <- function()
+make_parameters <- function(astring)
 {
-    id <- randomStrings(1, len=20)
+    id <- astring
     size <- runif(1)
     # If only all cancer screening were so simple...
     if (size > .8) {
@@ -32,6 +43,8 @@ insert_data <- function(connection, parameters)
 }
 
 con <- setup()
-param <- make_parameters()
-insert_data(con, param)
+for (s in stringlist) {
+    param <- make_parameters(s)
+    insert_data(con, param)
+}
 print("All done!")
