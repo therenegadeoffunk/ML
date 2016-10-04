@@ -14,12 +14,21 @@ make_parameters <- function()
 {
     id <- randomStrings(1, len=20)
     size <- runif(1)
-    # Need some method for deciding malignancy based on size
+    # If only all cancer screening were so simple...
+    if (size > .8) {
+        malig <- 1
+    } else {
+        malig <- 0
+    }
+    param <- list(id, size, malig)
+    return(param)
 }
 
-insert_data -< function(connection, parameters)
+insert_data <- function(connection, parameters)
 {
-    resp <- dbGetQuery(con, "SELECT * FROM tumors")
+    query <- sprintf("INSERT INTO tumors VALUES ( '%s', %s, %s)",
+                    parameters[1], parameters[2], parameters[3])
+    resp <- dbGetQuery(con, query)
 }
 
 con <- setup()
