@@ -47,4 +47,5 @@ for (s in stringlist) {
     param <- make_parameters(s)
     insert_data(con, param)
 }
+dbDisconnect(con)
 print("All done!")
