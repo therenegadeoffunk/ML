@@ -9,9 +9,16 @@ setup <- function()
     return(con)
 }
 
+get_data <- function(con)
+{
+    df <- dbGetQuery(con, 'SELECT * FROM tumors')
+    return(df)
+}
+
 # TODO - Needs to select the data, shape it, then do logistic regression!
 
 con <- setup()
-# DO STUFF
+data <- get_data(con)
+# Quick test
 dbDisconnect(con)
 print("Cowabunga!")
