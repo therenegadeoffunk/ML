@@ -12,16 +12,16 @@ setup <- function()
 
 get_data <- function(con)
 {
-    df <- dbGetQuery(con, 'SELECT * FROM tumors')
-    return(df)
+    d <- dbGetQuery(con, 'SELECT * FROM tumors')
+    return(d)
 }
 
 # TODO - l-l-l-logistic regression!
 
 con <- setup()
-df <- get_data(con)
+d <- get_data(con)
 # Lets plot it and take a look see
-m = data.matrix(df)
+m = data.matrix(d)
 png('plot.png')
 qplot(m[,2], m[,3])
 dbDisconnect(con)
