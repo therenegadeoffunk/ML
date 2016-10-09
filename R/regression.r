@@ -1,7 +1,6 @@
 #!/usr/bin/Rscript
 
 require('RPostgreSQL')
-require('ggplot2')
 
 setup <- function()
 {
@@ -16,13 +15,23 @@ get_data <- function(con)
     return(d)
 }
 
-# TODO - l-l-l-logistic regression!
+# Connect to our postgres database
 
 con <- setup()
+
+# Do a select query to get the data
 d <- get_data(con)
-# Lets plot it and take a look see
-m = data.matrix(d)
+
+# Lets make a simple plot, add some labels, and save it to a png file
 png('plot.png')
-qplot(m[,2], m[,3])
+plot(d[,2], d[,3], xlab="Tumor Size", ylab="Malignancy", main="Tumor Malignancy from Size")
+
+# Now we figure out the decision boundary based on the data 
+pre = glm(formula = malignant ~ size, family=binomial(link='logit'),data=d)
+
+# Now we add it to the graph
+curve(predict(pre, data.frame(size=x), type='resp'), add=TRUE)
+
+# And we're done. Disconnect from the database, say 'cowabunga', go home.
 dbDisconnect(con)
 print("Cowabunga!")
