@@ -1,3 +1,6 @@
 *.pyc
 *.swp
 *.R*
+*.idea*
+*.jar
+*.class
