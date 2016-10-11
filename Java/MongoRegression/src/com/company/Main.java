@@ -1,4 +1,5 @@
 package com.company;
+import com.company.StudentGenerator;
 import com.mongodb.DB;
 import com.mongodb.DBCollection;
 import com.mongodb.MongoClient;
@@ -12,7 +13,11 @@ public class Main {
         MongoClient mongoClient = new MongoClient("localhost", 27017);
         DB db = mongoClient.getDB("students");
         DBCollection collection = db.getCollection("academics");
+        StudentGenerator g = new StudentGenerator(mongoClient);
+        g.InsertStudents();
         output = collection.findOne().toString();
         System.out.println(output);
+        mongoClient.close();
+        return;
     }
 }
