@@ -14,11 +14,12 @@ public class StudentGenerator {
     public void InsertStudents() {
         DB db = this.mc.getDB("students");
         DBCollection collection = db.getCollection("academics");
-        BasicDBObject obj = new BasicDBObject("name", "dude")
-                .append("sat", 1800)
-                .append("iq", 105)
-                .append("gpa", 3.0)
-                .append("admit", 0);
+        Student student = new Student();
+        BasicDBObject obj = new BasicDBObject("name", student.name)
+                .append("sat", student.sat)
+                .append("iq", student.iq)
+                .append("gpa", student.gpa)
+                .append("admit", student.admit);
         collection.insert(obj);
     }
 }
