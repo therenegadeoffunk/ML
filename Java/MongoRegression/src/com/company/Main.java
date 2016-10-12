@@ -1,8 +1,8 @@
 package com.company;
-import com.company.StudentGenerator;
 import com.mongodb.DB;
 import com.mongodb.DBCollection;
 import com.mongodb.MongoClient;
+import java.util.List;
 
 public class Main {
 
@@ -14,7 +14,8 @@ public class Main {
         DB db = mongoClient.getDB("students");
         DBCollection collection = db.getCollection("academics");
         StudentGenerator g = new StudentGenerator(mongoClient);
-        g.InsertStudents();
+        List<Student> students = g.GenerateStudents(100);
+        g.InsertStudents(students);
         output = collection.findOne().toString();
         System.out.println(output);
         mongoClient.close();

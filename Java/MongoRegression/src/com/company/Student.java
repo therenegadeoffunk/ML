@@ -54,7 +54,7 @@ public class Student {
     private String InitName() {
         // TODO: Make this less dumb
         Random random = new Random();
-        String Name = "Muh name" + Integer.toString(random.nextInt(1000));
+        String Name = "Muh name" + Integer.toString(random.nextInt(1000000));
         return Name;
     }
 }
