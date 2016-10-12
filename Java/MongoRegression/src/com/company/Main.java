@@ -1,6 +1,7 @@
 package com.company;
 import com.mongodb.DB;
 import com.mongodb.DBCollection;
+import com.mongodb.DBCursor;
 import com.mongodb.MongoClient;
 import java.util.List;
 
@@ -16,8 +17,11 @@ public class Main {
         StudentGenerator g = new StudentGenerator(mongoClient);
         List<Student> students = g.GenerateStudents(100);
         g.InsertStudents(students);
-        output = collection.findOne().toString();
-        System.out.println(output);
+        AdmissionsData ad = new AdmissionsData(mongoClient);
+        DBCursor cur = ad.GetDocuments();
+        while (cur.hasNext()) {
+            System.out.println(cur.next());
+        }
         mongoClient.close();
         return;
     }
