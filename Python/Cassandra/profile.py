@@ -10,25 +10,20 @@ def setup():
     session = cluster.connect()
     return session
 
-def get_table_names(session, keyspace_name):
-    query = '''SELECT table_name FROM system_schema.tables \
+def profile_tables(session, keyspace_name):
+    query = '''SELECT * FROM system_schema.tables \
             WHERE keyspace_name=%s;'''
     result = session.execute(query, (keyspace_name,))
-    name_list = []
+    # Just printing for now. We'll do cooler things later
     for item in result:
-        name_list.append(item.table_name)
-    return name_list
+        print item
 
-def profile_tables(session, keyspace_name):
-    name_list = get_table_names(session, keyspace_name)
-    for name in name_list:
-        profile_table(session, keyspace_name, name)
-
+# This method for profiling an individual table may be useful later    
 def profile_table(session, keyspace_name, table):
     query = '''SELECT * FROM system_schema.tables WHERE \
             keyspace_name=%s AND table_name=%s;'''
     result = session.execute(query, (keyspace_name, table))
-    # Just printing for now. We'll do cooler things later
+    # Just printing for now
     print result[0]
 
 if __name__ == "__main__":
