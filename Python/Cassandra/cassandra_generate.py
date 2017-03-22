@@ -30,7 +30,7 @@ def get_params():
     title = make_title()
     budget = random.uniform(1, 11)
     score = get_score(budget)
-    return [ title, score, budget ]
+    return [ title, int(score), int(budget) ]
 
 def make_title():
     title_length = random.uniform(1, 7)
