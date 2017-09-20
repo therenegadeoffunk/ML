@@ -1,0 +1,46 @@
+OBSERVATIONS
+
+- It might be a good idea to add some new features by working with the data. For example:
+
+- We could calculate the percentage of total available credit used by just comparing columns
+X1 and X12 - X17. The percentage of total credit remaing / used each month could be
+predictive.
+
+- We could also add 'trend' features. Look at payments, payment timeliness, and balances
+across the six months provided and then create a simple 0 or 1 feature capturing a good
+or bad trend. (balance increasing over six months is bad, overall more late payments than
+on time is also bad)
+
+- For bill payments it might be good to identify payments as a percentage of debt. High
+bill payments are fine if they represent a person paying off 100% percent of their debt
+each month. Similarly low payments are bad if they represent someone paying only a tiny
+fraction of their bill each month. The inverse of both statements also likely applies
+(high payments only paying off a small percent of debt vs low payments wiping out all or
+most of one's debt)
+
+GOALS
+
+- For v1.0, we won't generate any new features. In fact we might not even use all of the
+available features or do any normalization. We'll just work with the raw data.
+
+- Firstly we'll play around with the data a bit in Python and look for simple correlations.
+Maybe there is a strong correlation between gender and defaulting, or education level and
+defaulting. Who knows? Should also try doing some visualization.
+
+- Second we'll do a simple logistic regression. We'll break the data into three sets - 
+training, test, and cross validation - and then play around with a simple implementation.
+
+- Once we have something that sort of works, we'll start iterating and improving. For
+v1.1 we'll start cleaning up the data. We'll do normalization and try a regression with
+more features.
+
+- For v1.2 we should consider dimensionality reduction and more visualization. Based on the
+correlations we identify, we can probably cut some features and use PCA to combine
+others. I also want to work with newly created features described in the above OBSERVATIONS
+section.
+
+- Goal of v1.3 or v2.0 or whatever, is to continuously improve on classification accuracy.
+I think a good starting goal for a data set this size would be to get above 80% accuracy.
+Of course I'd love to get 99.99%, but my gut tells me that this is unlikely given the data
+available. There are a lot of things that go into a person defaulting on a credit payment
+that just are not captured here.
