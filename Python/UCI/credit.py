@@ -12,7 +12,7 @@ df = pd.read_csv(data_path)
 
 reduced = df[['X3', 'X5', 'Y']].copy()
 viz = reduced.iloc[1:]
-
+viz = viz.head(n=50)
 # Convert the strings to numerical type
 
 viz.Y = pd.to_numeric(viz.Y, errors='coerce')
