@@ -13,7 +13,7 @@ df = pd.read_csv(data_path)
 
 reduced = df[['X3', 'X5', 'Y']].copy()
 viz = reduced.iloc[1:]
-viz = viz.head(n=500)
+viz = viz.head(n=2000)
 # Convert the strings to numerical type
 
 viz.Y = pd.to_numeric(viz.Y, errors='coerce')
@@ -33,7 +33,7 @@ ax.scatter(neg['X5'], neg['X3'], s=50, c='r', marker='x', label='Not_Defaulted')
 ax.legend()  
 ax.set_xlabel('Age')  
 ax.set_ylabel('Education')
-plt.show()
+#plt.show()
 
 # Make a sigmoid function
 
