@@ -1,5 +1,11 @@
 #!/usr/bin/env python
 
+# Note: This script is for testing against a local cassandra node
+
+# It will behave weirdly if run against a remote endpoint
+
+# TODO: Fix the above...
+
 from cassandra.cluster import Cluster
 import random
 import sys
